@@ -15,7 +15,7 @@ export {
   generateAnonymousId,
 } from '@datanova/browser';
 
-export { createReactDatanova } from './createReactDatanova';
+export { createDatanova } from './createDatanova';
 export { useDatanova } from './hooks/useDatanova';
 export { useVariant } from './hooks/useVariant';
 export { DatanovaProvider } from './providers/DatanovaProvider';
