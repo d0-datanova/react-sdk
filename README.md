@@ -63,14 +63,14 @@ function HomePage() {
 ### 3. Run A/B Tests
 
 ```jsx
-import { useExperiment } from '@datanova/react';
+import { useVariant } from '@datanova/react';
 
 function Feature() {
-  const { variant, isLoading } = useExperiment(123);
+  const { data, isLoading } = useVariant({ experimentId: 123 });
 
   if (isLoading) return <div>Loading...</div>;
 
-  return <div>{variant === 'variant' ? <NewFeature /> : <OldFeature />}</div>;
+  return <div>{data === 'variant' ? <NewFeature /> : <OldFeature />}</div>;
 }
 ```
 
@@ -155,12 +155,12 @@ import { Experiment } from '@datanova/react';
 
 ### Hooks
 
-#### `useExperiment(experimentId)`
+#### `useVariant({ experimentId })`
 
 Hook to get and track A/B test variants.
 
 ```jsx
-const { variant, isLoading, error } = useExperiment(123);
+const { data, isLoading, error } = useVariant({ experimentId: 123 });
 ```
 
 #### `useDatanova()`
