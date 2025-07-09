@@ -1,3 +1,9 @@
+## [1.3.0](https://github.com/d0-datanova/react-sdk/compare/v1.2.0...v1.3.0) (2025-07-09)
+
+### Features
+
+* change TrackPageView to be standalone component ([#2](https://github.com/d0-datanova/react-sdk/issues/2)) ([278e85c](https://github.com/d0-datanova/react-sdk/commit/278e85cf1f10101701b95e73ed205fa06775d921))
+
 ## [1.2.0](https://github.com/d0-datanova/react-sdk/compare/v1.1.0...v1.2.0) (2025-07-09)
 
 ### Features
