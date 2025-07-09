@@ -2,7 +2,7 @@
 export * from '@datanova/browser';
 export { createReactDatanova } from './createReactDatanova';
 export { useDatanova } from './hooks/useDatanova';
-export { useExperiment } from './hooks/useExperiment';
+export { useVariant } from './hooks/useVariant';
 export { DatanovaProvider } from './providers/DatanovaProvider';
 export {
   TrackPageView,

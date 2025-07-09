@@ -5,9 +5,9 @@ import { Variant } from '@datanova/browser';
 import { DatanovaContext } from '../providers/DatanovaProvider';
 
 type ExperimentState =
-  | { isLoading: true; variant: undefined; error: null }
-  | { isLoading: false; variant: Variant; error: null }
-  | { isLoading: false; variant: 'control'; error: Error };
+  | { isLoading: true; data: undefined; error: null }
+  | { isLoading: false; data: Variant; error: null }
+  | { isLoading: false; data: 'control'; error: Error };
 
 /**
  * Hook to get and track A/B test experiment variants.
@@ -21,17 +21,17 @@ type ExperimentState =
  *
  * @example
  * ```jsx
- * import { useExperiment } from '@datanova/react';
+ * import { useVariant } from '@datanova/react';
  *
  * function MyComponent() {
- *   const { loading, variant, error } = useExperiment(20);
+ *   const { loading, data, error } = useVariant({ experimentId: 20 });
  *
  *   if (loading) return <div>Loading...</div>;
  *   if (error) return <div>Error: {error.message}</div>;
  *
  *   return (
  *     <div>
- *       {variant === 'variant' ? (
+ *       {data === 'variant' ? (
  *         <NewFeature />
  *       ) : (
  *         <OldFeature />
@@ -41,11 +41,11 @@ type ExperimentState =
  * }
  * ```
  */
-export function useExperiment(experimentId: number): ExperimentState {
+export function useVariant({ experimentId }: { experimentId: number }): ExperimentState {
   const client = useContext(DatanovaContext);
   const [state, setState] = useState<ExperimentState>({
     isLoading: true,
-    variant: undefined,
+    data: undefined,
     error: null,
   });
 
@@ -53,8 +53,8 @@ export function useExperiment(experimentId: number): ExperimentState {
     if (!client) {
       setState({
         isLoading: false,
-        variant: 'control',
-        error: new Error('useExperiment must be used within a DatanovaProvider'),
+        data: 'control',
+        error: new Error('useVariant must be used within a DatanovaProvider'),
       });
       return;
     }
@@ -63,13 +63,13 @@ export function useExperiment(experimentId: number): ExperimentState {
 
     async function fetchVariant() {
       try {
-        setState({ isLoading: true, variant: undefined, error: null });
+        setState({ isLoading: true, data: undefined, error: null });
         const variant = await client!.getVariant(experimentId);
 
         if (!cancelled) {
           setState({
             isLoading: false,
-            variant,
+            data: variant,
             error: null,
           });
         }
@@ -77,7 +77,7 @@ export function useExperiment(experimentId: number): ExperimentState {
         if (!cancelled) {
           setState({
             isLoading: false,
-            variant: 'control',
+            data: 'control',
             error: err instanceof Error ? err : new Error('Failed to load experiment'),
           });
         }
@@ -87,7 +87,7 @@ export function useExperiment(experimentId: number): ExperimentState {
     if (typeof window !== 'undefined') {
       fetchVariant();
     } else {
-      setState({ isLoading: false, variant: 'control', error: null });
+      setState({ isLoading: false, data: 'control', error: null });
     }
 
     return () => {

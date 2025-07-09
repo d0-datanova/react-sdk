@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { useExperiment } from '../hooks/useExperiment';
+import { useVariant } from '../hooks/useVariant';
 
 interface ExperimentProps {
   /** The numeric ID of the experiment */
@@ -53,7 +53,7 @@ export function Experiment({
   loading: loadingContent,
   error: errorContent,
 }: ExperimentProps) {
-  const { variant, isLoading, error } = useExperiment(experimentId);
+  const { data, isLoading, error } = useVariant({ experimentId });
 
   if (isLoading) {
     return <>{loadingContent ?? null}</>;
@@ -63,7 +63,7 @@ export function Experiment({
     return <>{errorContent ?? control}</>;
   }
 
-  const content = variant === 'variant' ? variantContent : control;
+  const content = data === 'variant' ? variantContent : control;
 
   return <>{content}</>;
 }
