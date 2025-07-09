@@ -6,7 +6,6 @@ Official React SDK for event tracking and A/B testing with Datanova. This SDK pr
 
 - 🎯 **Event Tracking Components** - Pre-built components for common tracking scenarios
 - 🪝 **React Hooks** - Custom hooks for experiments and tracking
-- 🔄 **Automatic Re-rendering** - Components automatically re-render when experiments change
 - 📦 **Tree-shakeable** - Import only what you need
 - 🎨 **TypeScript Support** - Full TypeScript support with type definitions
 - ⚡ **SSR Compatible** - Works with Next.js and other SSR frameworks
@@ -26,10 +25,10 @@ pnpm add @datanova/react
 ### 1. Initialize the Client
 
 ```jsx
-import { createDatanova, DatanovaProvider } from '@datanova/react';
+import { createReactDatanova, DatanovaProvider } from '@datanova/react';
 
 // Create client instance
-const datanova = createDatanova('YOUR_SDK_KEY');
+const datanova = createReactDatanova('YOUR_SDK_KEY');
 
 // Wrap your app with the provider
 function App() {
@@ -48,17 +47,15 @@ import { TrackClick, TrackPageView, TrackImpression } from '@datanova/react';
 
 function HomePage() {
   return (
-    <>
-      <TrackPageView name="home_page" />
-      
+    <TrackPageView name="home_page">
       <TrackImpression name="hero_banner" data={{ variant: 'A' }}>
         <div>Your banner content</div>
       </TrackImpression>
-      
+
       <TrackClick name="cta_button" data={{ location: 'hero' }}>
         <button>Click Me!</button>
       </TrackClick>
-    </>
+    </TrackPageView>
   );
 }
 ```
@@ -70,18 +67,10 @@ import { useExperiment } from '@datanova/react';
 
 function Feature() {
   const { variant, isLoading } = useExperiment(123);
-  
+
   if (isLoading) return <div>Loading...</div>;
-  
-  return (
-    <div>
-      {variant === 'variant' ? (
-        <NewFeature />
-      ) : (
-        <OldFeature />
-      )}
-    </div>
-  );
+
+  return <div>{variant === 'variant' ? <NewFeature /> : <OldFeature />}</div>;
 }
 ```
 
@@ -90,16 +79,15 @@ function Feature() {
 ### Components
 
 #### `<TrackPageView />`
+
 Tracks page views automatically when the component mounts.
 
 ```jsx
-<TrackPageView 
-  name="product_page" 
-  data={{ productId: '123', category: 'electronics' }} 
-/>
+<TrackPageView name="product_page" data={{ productId: '123', category: 'electronics' }} />
 ```
 
 #### `<TrackClick />`
+
 Tracks clicks on child elements.
 
 ```jsx
@@ -109,19 +97,17 @@ Tracks clicks on child elements.
 ```
 
 #### `<TrackImpression />`
+
 Tracks when elements become visible using Intersection Observer.
 
 ```jsx
-<TrackImpression 
-  name="product_card" 
-  data={{ productId: '123' }}
-  threshold={0.5}
->
+<TrackImpression name="product_card" data={{ productId: '123' }} threshold={0.5}>
   <ProductCard />
 </TrackImpression>
 ```
 
 #### `<TrackSubmit />`
+
 Tracks form submissions.
 
 ```jsx
@@ -134,6 +120,7 @@ Tracks form submissions.
 ```
 
 #### `<TrackChange />`
+
 Tracks changes to form inputs.
 
 ```jsx
@@ -143,22 +130,33 @@ Tracks changes to form inputs.
 ```
 
 #### `<Experiment />`
+
 Renders different content based on A/B test variants.
 
 ```jsx
-<Experiment experimentId={123}>
-  <Experiment.Control>
-    <OldVersion />
-  </Experiment.Control>
-  <Experiment.Variant>
-    <NewVersion />
-  </Experiment.Variant>
-</Experiment>
+import { Experiment } from '@datanova/react';
+
+// Basic usage
+<Experiment
+  experimentId={123}
+  control={<OldVersion />}
+  variant={<NewVersion />}
+/>
+
+// With loading and error states
+<Experiment
+  experimentId={123}
+  control={<OldCheckout />}
+  variant={<NewCheckout />}
+  loading={<CheckoutSkeleton />}
+  error={<OldCheckout />} // Fallback to control on error
+/>
 ```
 
 ### Hooks
 
 #### `useExperiment(experimentId)`
+
 Hook to get and track A/B test variants.
 
 ```jsx
@@ -166,6 +164,7 @@ const { variant, isLoading, error } = useExperiment(123);
 ```
 
 #### `useDatanova()`
+
 Hook to access the Datanova client instance.
 
 ```jsx
@@ -180,12 +179,12 @@ datanova.track('custom_event', { foo: 'bar' });
 ### Custom Event Service
 
 ```jsx
-import { createDatanova, ConsoleEventsService } from '@datanova/react';
+import { createReactDatanova } from '@datanova/react';
+import { ConsoleEventsService } from '@datanova/browser';
 
 // Use console logging for development
-const datanova = createDatanova({
+const datanova = createReactDatanova({
   eventsService: new ConsoleEventsService(),
-  experimentsService: new RandomExperimentsService()
 });
 ```
 
@@ -193,10 +192,10 @@ const datanova = createDatanova({
 
 ```jsx
 // _app.tsx
-import { createDatanova, DatanovaProvider } from '@datanova/react';
+import { createReactDatanova, DatanovaProvider } from '@datanova/react';
 
 // Initialize outside of component to prevent re-initialization
-const datanova = createDatanova(process.env.NEXT_PUBLIC_DATANOVA_KEY!);
+const datanova = createReactDatanova(process.env.NEXT_PUBLIC_DATANOVA_KEY!);
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -208,29 +207,6 @@ function MyApp({ Component, pageProps }) {
 
 export default MyApp;
 ```
-
-### TypeScript
-
-All components and hooks are fully typed. Import types as needed:
-
-```typescript
-import type { 
-  TrackClickProps, 
-  TrackPageViewProps,
-  ExperimentState 
-} from '@datanova/react';
-```
-
-## Browser Support
-
-- Chrome/Edge: Last 2 versions
-- Firefox: Last 2 versions  
-- Safari: Last 2 versions
-- IE: Not supported
-
-## Contributing
-
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details.
 
 ## License
 
