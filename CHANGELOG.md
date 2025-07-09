@@ -1,3 +1,9 @@
+## [1.2.0](https://github.com/d0-datanova/react-sdk/compare/v1.1.0...v1.2.0) (2025-07-09)
+
+### Features
+
+* selectively re-export from browser sdk ([f5c3483](https://github.com/d0-datanova/react-sdk/commit/f5c348348272962a47743f1d651a3feda2073b03))
+
 ## [1.1.0](https://github.com/d0-datanova/react-sdk/compare/v1.0.1...v1.1.0) (2025-07-09)
 
 ### Features
