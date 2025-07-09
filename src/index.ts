@@ -1,5 +1,20 @@
-// Re-export everything from browser SDK
-export * from '@datanova/browser';
+export type {
+  Event,
+  EventsService,
+  ExperimentsService,
+  SDKConfig,
+  Variant,
+} from '@datanova/browser';
+export {
+  EventType,
+  ConsoleEventsService,
+  DatanovaEventsService,
+  DatanovaExperimentsService,
+  NoopEventsService,
+  RandomExperimentsService,
+  generateAnonymousId,
+} from '@datanova/browser';
+
 export { createReactDatanova } from './createReactDatanova';
 export { useDatanova } from './hooks/useDatanova';
 export { useVariant } from './hooks/useVariant';

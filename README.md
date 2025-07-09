@@ -1,6 +1,7 @@
 # @datanova/react
 
-Official React SDK for event tracking and A/B testing with Datanova. This SDK provides React-specific components and hooks that make it easy to integrate Datanova analytics into your React applications.
+Official React SDK for event tracking and A/B testing with Datanova.
+This SDK provides React-specific components and hooks that make it easy to integrate Datanova analytics into your React applications.
 
 ## Features
 
