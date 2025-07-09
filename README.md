@@ -48,7 +48,9 @@ import { TrackClick, TrackPageView, TrackImpression } from '@datanova/react';
 
 function HomePage() {
   return (
-    <TrackPageView name="home_page">
+    <>
+      <TrackPageView eventName="home_page_viewed" />
+
       <TrackImpression name="hero_banner" data={{ variant: 'A' }}>
         <div>Your banner content</div>
       </TrackImpression>
@@ -56,7 +58,7 @@ function HomePage() {
       <TrackClick name="cta_button" data={{ location: 'hero' }}>
         <button>Click Me!</button>
       </TrackClick>
-    </TrackPageView>
+    </>
   );
 }
 ```
@@ -84,7 +86,10 @@ function Feature() {
 Tracks page views automatically when the component mounts.
 
 ```jsx
-<TrackPageView name="product_page" data={{ productId: '123', category: 'electronics' }} />
+<TrackPageView
+  eventName="product_page_viewed"
+  properties={{ productId: '123', category: 'electronics' }}
+/>
 ```
 
 #### `<TrackClick />`

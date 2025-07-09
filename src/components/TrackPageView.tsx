@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDatanova } from '../hooks/useDatanova';
 
 /**
@@ -11,7 +11,6 @@ export interface TrackPageViewProps {
   eventName: string;
   /** Optional properties to include with the event */
   properties?: Record<string, unknown>;
-  children?: ReactNode;
 }
 
 /**
@@ -24,9 +23,10 @@ export interface TrackPageViewProps {
  *
  * function HomePage() {
  *   return (
- *     <TrackPageView eventName="Home Page Viewed">
+ *     <>
+ *       <TrackPageView eventName="Home Page Viewed" />
  *       <h1>Welcome to our site</h1>
- *     </TrackPageView>
+ *     </>
  *   );
  * }
  * ```
@@ -34,20 +34,25 @@ export interface TrackPageViewProps {
  * @example
  * ```jsx
  * // With additional properties
- * <TrackPageView
- *   eventName="Product Page Viewed"
- *   properties={{ productId: '123', category: 'electronics' }}
- * >
- *   <ProductDetails />
- * </TrackPageView>
+ * function ProductPage({ productId }) {
+ *   return (
+ *     <>
+ *       <TrackPageView
+ *         eventName="Product Page Viewed"
+ *         properties={{ productId, category: 'electronics' }}
+ *       />
+ *       <ProductDetails />
+ *     </>
+ *   );
+ * }
  * ```
  */
-export function TrackPageView({ eventName, properties, children }: TrackPageViewProps) {
+export function TrackPageView({ eventName, properties }: TrackPageViewProps) {
   const { trackPageView } = useDatanova();
 
   useEffect(() => {
     trackPageView(eventName, properties);
   }, [eventName, properties, trackPageView]);
 
-  return <>{children}</>;
+  return null;
 }
