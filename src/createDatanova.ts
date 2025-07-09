@@ -8,8 +8,8 @@ import {
 import { name, version } from '../package.json';
 
 // Overload signatures
-export function createReactDatanova(apiKey: string): Datanova;
-export function createReactDatanova(config: {
+export function createDatanova(apiKey: string): Datanova;
+export function createDatanova(config: {
   eventsService?: EventsService;
   experimentsService?: ExperimentsService;
 }): Datanova;
@@ -32,7 +32,7 @@ export function createReactDatanova(config: {
  * });
  * ```
  */
-export function createReactDatanova(
+export function createDatanova(
   keyOrServices:
     | string
     | {
