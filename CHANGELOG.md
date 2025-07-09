@@ -1,3 +1,9 @@
+## [1.4.0](https://github.com/d0-datanova/react-sdk/compare/v1.3.0...v1.4.0) (2025-07-09)
+
+### Features
+
+* change name to createDatanova ([#3](https://github.com/d0-datanova/react-sdk/issues/3)) ([62eb557](https://github.com/d0-datanova/react-sdk/commit/62eb557380087b012913b394434b8a5868867906))
+
 ## [1.3.0](https://github.com/d0-datanova/react-sdk/compare/v1.2.0...v1.3.0) (2025-07-09)
 
 ### Features
