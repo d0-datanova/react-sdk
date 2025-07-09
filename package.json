@@ -1,0 +1,74 @@
+{
+  "name": "@datanova/react",
+  "version": "0.1.0",
+  "description": "React SDK for event tracking and A/B testing with Datanova",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "NODE_ENV=production tsup",
+    "dev": "NODE_ENV=development tsup --watch",
+    "lint": "eslint src",
+    "tc": "tsc --noEmit",
+    "format": "prettier --write src"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d0-datanova/react-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/d0-datanova/react-sdk/issues"
+  },
+  "homepage": "https://github.com/d0-datanova/react-sdk#readme",
+  "keywords": [
+    "analytics",
+    "ai",
+    "data-analyst",
+    "react",
+    "react-hooks",
+    "event-tracking",
+    "ab-testing"
+  ],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
+  "dependencies": {
+    "@datanova/browser": "^1.3.2",
+    "react-intersection-observer": "^9.16.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.30.1",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/release-notes-generator": "^14.0.3",
+    "@types/node": "^24.0.12",
+    "@types/react": "^19.1.8",
+    "conventional-changelog-conventionalcommits": "^9.0.0",
+    "eslint": "^9.30.1",
+    "prettier": "^3.6.2",
+    "react": "^19.1.0",
+    "semantic-release": "^24.2.6",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.36.0"
+  }
+}
