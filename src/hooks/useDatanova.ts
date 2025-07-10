@@ -14,14 +14,18 @@ import { DatanovaContext } from '../providers/DatanovaProvider';
  * import { useDatanova } from '@datanova/react';
  *
  * function MyComponent() {
- *   const { track, identify, reset } = useDatanova();
+ *   const { trackClick, identify, reset } = useDatanova();
  *
  *   const handleClick = () => {
- *     track('Button Clicked', EventType.CLICK, { buttonId: 'submit' });
+ *     trackClick('Button Clicked', { buttonId: 'submit' });
  *   };
  *
- *   const handleLogin = (userId) => {
+ *   const handleLogin = (userId, plan) => {
+ *     // Simple identify with just userId
  *     identify(userId);
+ *
+ *     // Or with user properties (v1.7.0+)
+ *     identify(userId, { plan });
  *   };
  *
  *   const handleLogout = () => {
@@ -42,7 +46,6 @@ export function useDatanova() {
   }
 
   return {
-    track: context.track,
     trackClick: context.trackClick,
     trackPageView: context.trackPageView,
     trackImpression: context.trackImpression,

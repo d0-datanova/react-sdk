@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { DatanovaProvider, DatanovaContext } from '../DatanovaProvider';
 import { useContext } from 'react';
@@ -93,5 +93,39 @@ describe('DatanovaProvider', () => {
     );
 
     expect(getByText('Has context in deep child')).toBeInTheDocument();
+  });
+
+  it('should pass through identify method with userProperties support', () => {
+    const mockIdentify = vi.fn();
+    const mockDatanova = {
+      identify: mockIdentify,
+    } as unknown as Datanova;
+
+    const TestComponent = () => {
+      const datanova = useContext(DatanovaContext);
+
+      const handleIdentify = () => {
+        // Test both signatures
+        datanova?.identify('user123');
+        datanova?.identify('user456', { email: 'test@example.com', plan: 'pro' });
+      };
+
+      return <button onClick={handleIdentify}>Identify</button>;
+    };
+
+    const { getByText } = render(
+      <DatanovaProvider value={mockDatanova}>
+        <TestComponent />
+      </DatanovaProvider>
+    );
+
+    getByText('Identify').click();
+
+    expect(mockIdentify).toHaveBeenCalledTimes(2);
+    expect(mockIdentify).toHaveBeenNthCalledWith(1, 'user123');
+    expect(mockIdentify).toHaveBeenNthCalledWith(2, 'user456', {
+      email: 'test@example.com',
+      plan: 'pro',
+    });
   });
 });
