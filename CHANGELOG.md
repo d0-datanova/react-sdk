@@ -1,3 +1,9 @@
+## [1.6.0](https://github.com/d0-datanova/react-sdk/compare/v1.5.0...v1.6.0) (2025-07-10)
+
+### Features
+
+* bump version ([3eba324](https://github.com/d0-datanova/react-sdk/commit/3eba32421ac0acdc0d67e4b5fce3b5036a1b0baf))
+
 ## [1.5.0](https://github.com/d0-datanova/react-sdk/compare/v1.4.0...v1.5.0) (2025-07-09)
 
 ### Features
