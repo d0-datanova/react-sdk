@@ -46,12 +46,22 @@ export function TrackChange({ children, eventName, properties }: TrackChangeProp
 
   const originalOnChange = children.props.onChange;
 
-  const handleChange = (value: unknown) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement> | unknown
+  ) => {
+    let value: unknown;
+
+    if (event && typeof event === 'object' && 'target' in event) {
+      value = (event as React.ChangeEvent<HTMLInputElement>).target.value;
+    } else {
+      value = event;
+    }
+
     trackChange(eventName, {
       ...properties,
       value,
     });
-    originalOnChange?.(value);
+    originalOnChange?.(event);
   };
 
   return cloneElement(children, { onChange: handleChange });
