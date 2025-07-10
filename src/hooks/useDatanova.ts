@@ -20,8 +20,12 @@ import { DatanovaContext } from '../providers/DatanovaProvider';
  *     trackClick('Button Clicked', { buttonId: 'submit' });
  *   };
  *
- *   const handleLogin = (userId) => {
+ *   const handleLogin = (userId, plan) => {
+ *     // Simple identify with just userId
  *     identify(userId);
+ *
+ *     // Or with user properties (v1.7.0+)
+ *     identify(userId, { plan });
  *   };
  *
  *   const handleLogout = () => {
