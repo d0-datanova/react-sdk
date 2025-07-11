@@ -1,3 +1,9 @@
+## [1.7.0](https://github.com/d0-datanova/react-sdk/compare/v1.6.0...v1.7.0) (2025-07-11)
+
+### Features
+
+* upgrade browser sdk ([0d4ba88](https://github.com/d0-datanova/react-sdk/commit/0d4ba880099080d1de40078d5a703c283558c5f5))
+
 ## [1.6.0](https://github.com/d0-datanova/react-sdk/compare/v1.5.0...v1.6.0) (2025-07-10)
 
 ### Features

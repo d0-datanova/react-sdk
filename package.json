@@ -1,6 +1,6 @@
 {
   "name": "@datanova/react",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "React SDK for event tracking and A/B testing with Datanova",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
