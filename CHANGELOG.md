@@ -1,3 +1,15 @@
+## [2.0.0](https://github.com/d0-datanova/react-sdk/compare/v1.7.0...v2.0.0) (2025-07-14)
+
+### ⚠ BREAKING CHANGES
+
+* Updated @datanova/browser dependency from v1.8.0 to v2.0.0. This major version upgrade may introduce breaking changes to the browser SDK functionality.
+
+🤖 Generated with [Claude Code](https://claude.ai/code)
+
+Co-authored-by: Claude <noreply@anthropic.com>
+
+* feat\!: upgrade @datanova/browser to v2.0.0 ([#6](https://github.com/d0-datanova/react-sdk/issues/6)) ([e217194](https://github.com/d0-datanova/react-sdk/commit/e2171941b35d9eade412223abfc19ac2a06b593a))
+
 ## [1.7.0](https://github.com/d0-datanova/react-sdk/compare/v1.6.0...v1.7.0) (2025-07-11)
 
 ### Features
