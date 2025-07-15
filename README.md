@@ -174,15 +174,15 @@ const { data, isLoading, error } = useVariant({ experimentId: 123 });
 Hook to access the Datanova client instance.
 
 ```jsx
-const datanova = useDatanova();
-
-// Track custom events
-datanova.track('custom_event', { foo: 'bar' });
+const { trackClick, trackPageView, trackImpression, trackSubmit, trackChange, identify, reset } =
+  useDatanova();
 ```
 
 ## Advanced Usage
 
 ### Custom Event Service
+
+Custom services can be created by implementing the `EventsService` and `ExperimentsService` interfaces.
 
 ```jsx
 import { createReactDatanova } from '@datanova/react';
@@ -192,26 +192,6 @@ import { ConsoleEventsService } from '@datanova/browser';
 const datanova = createReactDatanova({
   eventsService: new ConsoleEventsService(),
 });
-```
-
-### SSR with Next.js
-
-```jsx
-// _app.tsx
-import { createReactDatanova, DatanovaProvider } from '@datanova/react';
-
-// Initialize outside of component to prevent re-initialization
-const datanova = createReactDatanova(process.env.NEXT_PUBLIC_DATANOVA_KEY!);
-
-function MyApp({ Component, pageProps }) {
-  return (
-    <DatanovaProvider value={datanova}>
-      <Component {...pageProps} />
-    </DatanovaProvider>
-  );
-}
-
-export default MyApp;
 ```
 
 ## License
