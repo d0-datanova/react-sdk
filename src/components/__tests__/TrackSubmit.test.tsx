@@ -23,7 +23,7 @@ describe('TrackSubmit', () => {
 
   it('should track submit event when form is submitted', () => {
     const { getByTestId } = render(
-      <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+      <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
         <TrackSubmit eventName="Form Submitted" properties={{ formId: 'contact' }}>
           <form data-testid="test-form">
             <button type="submit">Submit</button>
@@ -41,7 +41,7 @@ describe('TrackSubmit', () => {
     const originalOnSubmit = vi.fn((e) => e.preventDefault());
 
     const { getByTestId } = render(
-      <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+      <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
         <TrackSubmit eventName="Form Submitted">
           <form data-testid="test-form" onSubmit={originalOnSubmit}>
             <button type="submit">Submit</button>
@@ -58,7 +58,7 @@ describe('TrackSubmit', () => {
 
   it('should work without properties', () => {
     const { getByTestId } = render(
-      <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+      <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
         <TrackSubmit eventName="Simple Form Submitted">
           <form data-testid="test-form">
             <button type="submit">Submit</button>
@@ -75,7 +75,7 @@ describe('TrackSubmit', () => {
   it('should throw error when children is not a valid React element', () => {
     expect(() => {
       render(
-        <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+        <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
           {/* @ts-expect-error Testing invalid children */}
           <TrackSubmit eventName="Invalid">Not a valid element</TrackSubmit>
         </DatanovaProvider>
@@ -85,7 +85,7 @@ describe('TrackSubmit', () => {
 
   it('should handle form without onSubmit handler', () => {
     const { getByTestId } = render(
-      <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+      <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
         <TrackSubmit eventName="Form Submitted">
           <form data-testid="test-form">
             <input type="text" name="test" />

@@ -23,7 +23,7 @@ describe('TrackPageView', () => {
 
   it('should track page view event on mount', () => {
     render(
-      <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+      <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
         <TrackPageView eventName="Page Viewed" />
       </DatanovaProvider>
     );
@@ -35,7 +35,7 @@ describe('TrackPageView', () => {
     const properties = { pageId: '123', section: 'products' };
 
     render(
-      <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+      <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
         <TrackPageView eventName="Product Page Viewed" properties={properties} />
       </DatanovaProvider>
     );
@@ -45,7 +45,7 @@ describe('TrackPageView', () => {
 
   it('should render nothing', () => {
     const { container } = render(
-      <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+      <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
         <TrackPageView eventName="Page Viewed" />
       </DatanovaProvider>
     );
@@ -55,7 +55,7 @@ describe('TrackPageView', () => {
 
   it('should re-track when eventName changes', () => {
     const { rerender } = render(
-      <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+      <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
         <TrackPageView eventName="Page 1 Viewed" />
       </DatanovaProvider>
     );
@@ -64,7 +64,7 @@ describe('TrackPageView', () => {
     expect(mockTrackPageView).toHaveBeenCalledWith('Page 1 Viewed', undefined);
 
     rerender(
-      <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+      <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
         <TrackPageView eventName="Page 2 Viewed" />
       </DatanovaProvider>
     );

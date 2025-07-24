@@ -23,7 +23,7 @@ describe('TrackChange', () => {
 
   it('should track change event when input value changes', () => {
     const { getByTestId } = render(
-      <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+      <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
         <TrackChange eventName="Input Changed" properties={{ fieldName: 'email' }}>
           <input data-testid="test-input" type="text" />
         </TrackChange>
@@ -41,7 +41,7 @@ describe('TrackChange', () => {
 
   it('should track change event when select value changes', () => {
     const { getByTestId } = render(
-      <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+      <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
         <TrackChange eventName="Filter Changed" properties={{ filterType: 'date' }}>
           <select data-testid="test-select">
             <option value="7d">Last 7 days</option>
@@ -64,7 +64,7 @@ describe('TrackChange', () => {
     const originalOnChange = vi.fn();
 
     const { getByTestId } = render(
-      <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+      <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
         <TrackChange eventName="Input Changed">
           <input data-testid="test-input" onChange={originalOnChange} />
         </TrackChange>
@@ -82,7 +82,7 @@ describe('TrackChange', () => {
 
   it('should work without additional properties', () => {
     const { getByTestId } = render(
-      <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+      <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
         <TrackChange eventName="Simple Change">
           <input data-testid="test-input" type="text" />
         </TrackChange>
@@ -100,7 +100,7 @@ describe('TrackChange', () => {
   it('should throw error when children is not a valid React element', () => {
     expect(() => {
       render(
-        <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+        <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
           {/* @ts-expect-error Testing invalid children */}
           <TrackChange eventName="Invalid">Not a valid element</TrackChange>
         </DatanovaProvider>
@@ -110,7 +110,7 @@ describe('TrackChange', () => {
 
   it('should handle element without onChange handler', () => {
     const { getByTestId } = render(
-      <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+      <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
         <TrackChange eventName="Input Changed">
           <input data-testid="test-input" type="text" />
         </TrackChange>

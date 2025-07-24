@@ -18,7 +18,7 @@ const mockDatanova = {
 
 describe('useDatanova', () => {
   const wrapper = ({ children }: { children: ReactNode }) => (
-    <DatanovaProvider value={mockDatanova as unknown as Datanova}>{children}</DatanovaProvider>
+    <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>{children}</DatanovaProvider>
   );
 
   beforeEach(() => {

@@ -34,7 +34,7 @@ const datanova = createReactDatanova('YOUR_SDK_KEY');
 // Wrap your app with the provider
 function App() {
   return (
-    <DatanovaProvider value={datanova}>
+    <DatanovaProvider datanova={datanova}>
       <YourApp />
     </DatanovaProvider>
   );
