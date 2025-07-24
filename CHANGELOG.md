@@ -1,3 +1,28 @@
+## [3.0.0](https://github.com/d0-datanova/react-sdk/compare/v2.0.0...v3.0.0) (2025-07-24)
+
+### ⚠ BREAKING CHANGES
+
+* The DatanovaProvider component now requires the 'datanova' prop instead of 'value'. This provides a more descriptive and intuitive API.
+
+Migration guide:
+```jsx
+// Before
+<DatanovaProvider value={datanova}>
+  <App />
+</DatanovaProvider>
+
+// After
+<DatanovaProvider datanova={datanova}>
+  <App />
+</DatanovaProvider>
+```
+
+🤖 Generated with [Claude Code](https://claude.ai/code)
+
+Co-authored-by: Claude <noreply@anthropic.com>
+
+* feat\!: rename DatanovaProvider prop from 'value' to 'datanova' ([#7](https://github.com/d0-datanova/react-sdk/issues/7)) ([15edb91](https://github.com/d0-datanova/react-sdk/commit/15edb91ee1ccf0552b6ad351ab33402ec7df462a))
+
 ## [2.0.0](https://github.com/d0-datanova/react-sdk/compare/v1.7.0...v2.0.0) (2025-07-14)
 
 ### ⚠ BREAKING CHANGES
