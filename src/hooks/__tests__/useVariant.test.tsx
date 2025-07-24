@@ -20,19 +20,25 @@ describe('useVariant', () => {
   };
 
   const wrapper = ({ children }: { children: ReactNode }) => (
-    <DatanovaProvider value={mockDatanova as unknown as Datanova}>{children}</DatanovaProvider>
+    <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>{children}</DatanovaProvider>
   );
 
   beforeEach(() => {
     mockGetVariant.mockClear();
   });
 
-  it('should return loading state initially', () => {
+  it('should return loading state initially', async () => {
+    mockGetVariant.mockResolvedValue('control');
+
     const { result } = renderHook(() => useVariant({ experimentId: 123 }), { wrapper });
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.data).toBeUndefined();
     expect(result.current.error).toBeNull();
+
+    await waitFor(() => {
+      expect(mockGetVariant).toHaveBeenCalled();
+    });
   });
 
   it('should fetch and return variant data', async () => {

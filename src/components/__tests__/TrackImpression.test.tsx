@@ -50,7 +50,7 @@ describe('TrackImpression', () => {
 
   it('should render children', () => {
     const { getByText } = render(
-      <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+      <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
         <TrackImpression eventName="Section Viewed">
           <div>Test Content</div>
         </TrackImpression>
@@ -62,7 +62,7 @@ describe('TrackImpression', () => {
 
   it('should track impression when element comes into view', () => {
     const { getByTestId } = render(
-      <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+      <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
         <TrackImpression eventName="Section Viewed">
           <div>Test Content</div>
         </TrackImpression>
@@ -79,7 +79,7 @@ describe('TrackImpression', () => {
     const properties = { sectionId: 'hero', position: 1 };
 
     const { getByTestId } = render(
-      <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+      <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
         <TrackImpression eventName="Hero Viewed" properties={properties}>
           <div>Hero Section</div>
         </TrackImpression>
@@ -94,7 +94,7 @@ describe('TrackImpression', () => {
 
   it('should use custom threshold', () => {
     const { getByTestId } = render(
-      <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+      <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
         <TrackImpression eventName="Section Viewed" threshold={0.8}>
           <div>Test Content</div>
         </TrackImpression>
@@ -107,7 +107,7 @@ describe('TrackImpression', () => {
 
   it('should use triggerOnce setting', () => {
     const { getByTestId } = render(
-      <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+      <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
         <TrackImpression eventName="Section Viewed" triggerOnce={false}>
           <div>Test Content</div>
         </TrackImpression>
@@ -120,7 +120,7 @@ describe('TrackImpression', () => {
 
   it('should not track when element is not in view', () => {
     render(
-      <DatanovaProvider value={mockDatanova as unknown as Datanova}>
+      <DatanovaProvider datanova={mockDatanova as unknown as Datanova}>
         <TrackImpression eventName="Section Viewed">
           <div>Test Content</div>
         </TrackImpression>

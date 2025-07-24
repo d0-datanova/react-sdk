@@ -7,7 +7,7 @@ import { Datanova } from '@datanova/browser';
  * Props for the DatanovaProvider component
  */
 interface DatanovaProviderProps {
-  value: Datanova;
+  datanova: Datanova;
   children: ReactNode;
 }
 
@@ -34,7 +34,7 @@ export const DatanovaContext = createContext<DatanovaContextValue | null>(null);
  *
  * function App() {
  *   return (
- *     <DatanovaProvider value={datanova}>
+ *     <DatanovaProvider datanova={datanova}>
  *       <YourApp />
  *     </DatanovaProvider>
  *   );
@@ -55,7 +55,7 @@ export const DatanovaContext = createContext<DatanovaContextValue | null>(null);
  *
  * function App() {
  *   return (
- *     <DatanovaProvider value={datanova}>
+ *     <DatanovaProvider datanova={datanova}>
  *       <YourApp />
  *     </DatanovaProvider>
  *   );
@@ -75,7 +75,7 @@ export const DatanovaContext = createContext<DatanovaContextValue | null>(null);
  *
  * function App() {
  *   return (
- *     <DatanovaProvider value={datanova}>
+ *     <DatanovaProvider datanova={datanova}>
  *       <YourApp />
  *     </DatanovaProvider>
  *   );
@@ -83,9 +83,9 @@ export const DatanovaContext = createContext<DatanovaContextValue | null>(null);
  * ```
  *
  * @param props - The provider props
- * @param props.value - The Datanova instance to provide to child components
+ * @param props.datanova - The Datanova instance to provide to child components
  * @param props.children - The child components that will have access to the Datanova instance
  */
-export function DatanovaProvider({ value, children }: DatanovaProviderProps) {
-  return <DatanovaContext.Provider value={value}>{children}</DatanovaContext.Provider>;
+export function DatanovaProvider({ datanova, children }: DatanovaProviderProps) {
+  return <DatanovaContext.Provider value={datanova}>{children}</DatanovaContext.Provider>;
 }

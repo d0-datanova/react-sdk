@@ -18,7 +18,7 @@ describe('DatanovaProvider', () => {
     };
 
     const { getByText } = render(
-      <DatanovaProvider value={mockDatanova}>
+      <DatanovaProvider datanova={mockDatanova}>
         <TestComponent />
       </DatanovaProvider>
     );
@@ -30,7 +30,7 @@ describe('DatanovaProvider', () => {
     const mockDatanova = {} as Datanova;
 
     const { getByText } = render(
-      <DatanovaProvider value={mockDatanova}>
+      <DatanovaProvider datanova={mockDatanova}>
         <div>Child Content</div>
       </DatanovaProvider>
     );
@@ -68,7 +68,7 @@ describe('DatanovaProvider', () => {
     };
 
     const { getByText } = render(
-      <DatanovaProvider value={customDatanova}>
+      <DatanovaProvider datanova={customDatanova}>
         <TestComponent />
       </DatanovaProvider>
     );
@@ -87,7 +87,7 @@ describe('DatanovaProvider', () => {
     const MiddleComponent = () => <DeepChild />;
 
     const { getByText } = render(
-      <DatanovaProvider value={mockDatanova}>
+      <DatanovaProvider datanova={mockDatanova}>
         <MiddleComponent />
       </DatanovaProvider>
     );
@@ -114,7 +114,7 @@ describe('DatanovaProvider', () => {
     };
 
     const { getByText } = render(
-      <DatanovaProvider value={mockDatanova}>
+      <DatanovaProvider datanova={mockDatanova}>
         <TestComponent />
       </DatanovaProvider>
     );
